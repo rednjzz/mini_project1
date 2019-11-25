@@ -1,0 +1,13 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/main.css')
+  body
+    .container
+      if user && user.id
+        .user-name= '안녕하세요' + user.nick + '님'
+      div 메인 페이지 입니다
