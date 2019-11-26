@@ -4,12 +4,18 @@ const flash = require('connect-flash');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
+const passport = require('passport');
 require('dotenv').config();
 
+const { sequelize } = require('./models');
+const passportConfig = require('./passport');
+
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
 
 const app = express();
+sequelize.sync();
+passportConfig(passport);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -30,8 +36,11 @@ app.use(session({
   },
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', pageRouter); 
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {  //에러 생성
   const error = new Error('Not Found');
