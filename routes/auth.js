@@ -35,7 +35,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
     }
     if (!user) {
       req.flash('loginError', info.message);
-      return res.redirect('/login');
+      return res.redirect('/');
     }
     return req.login(user, (loginError) => {
       if (loginError) {
@@ -47,10 +47,12 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
   })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
 
-router.get('/logout', isLoggedIn, (req, res) => {
+router.get('/logout', isLoggedIn, async (req, res) => {
+
+  
+  const test2 = await req.session.destroy(); 
   req.logout();
-  req.session.destroy();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 module.exports = router;

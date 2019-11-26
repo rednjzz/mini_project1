@@ -1,19 +1,22 @@
 extends layout
 
-block content
-  .profile-wrap 
-    .profile
-      form#login-form(action='/auth/login' method='post')
-        .input-group
-          label(for='email') 이메일
-          input#email(type='email' name='email' required autofocus)
-        .input-group
-          label(for='password') 비밀번호
-          input#password(type='password' name='password' required)
-        if loginError
-          .error-message= loginError
-        a#join.btn(href='/join') 회원가입
-        button#login.btn(type='submit') 로그인
+block content 
+  .login-container
+    .login-logo Skeleton Login
+    .login-item
+      form.login-form.form(action='/auth/login' method='post')
+        .form-field
+          label.user(for='email'): span.hidden 이메일
+          input#login-email(type='email' name='email' placeholder="user@email.com" required autofocus)
+        .form-field
+          label.lock(for='password'): span.hidden 비밀번호
+          input#login-password(type='password' name='password' required)
+        .form-field
+          if loginError
+            .error-message= loginError
+        .form-field
+          button#login.btn(type='submit') 로그인
+        .form-field
+          button#join.btn: a(href='/join') join
+          
 
-     
-      

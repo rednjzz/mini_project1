@@ -1,0 +1,127 @@
+@import url('https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css');
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+html {
+   height: 100%;
+}
+
+body {
+/* Remember to use the other versions for IE 10 and older browsers! */
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100%;
+font-family: 'lato', sans-serif;
+color: black;
+}
+
+.form-container {
+	background:rgba(180, 192, 247, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
+  width:500px;
+  display: flex;  
+  flex-direction: column;
+}
+
+.form-logo{
+  font-family: "museo-slab";  
+  font-size:20px;
+  text-align: center;
+  padding: 20px 20px 0;
+  margin:0;
+}
+
+.form-item {
+	color: black;
+	padding:25px 25px 0;
+	margin: 20px 20px 0;	
+	border-radius: 3px;
+}
+
+input {
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
+}
+
+.user:before {
+  content: '\f007';
+  font: 14px fontawesome;
+	color: #5b5b5b;
+}
+
+.lock:before {
+  content: '\f023';
+  font: 14px fontawesome;
+	color: #5b5b5b;
+}
+
+.form input, .form #login.btn, .form #join.btn, .form #join-btn.btn {
+  width: 100%;
+}
+
+.form label,
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"],
+.form #login.btn, .form #join.btn, .form #join-btn.btn {
+  border-radius: 0.25rem;
+  padding: 1rem;
+  color: #3A3F44;  
+}
+
+#login-form label, #join-form label {
+  background-color: rgb(92, 134, 211);
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 80px;
+}
+
+#login-form input,#join-form input {
+  background-color: #ffffff;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+#login-form input:focus, #login-form:hover, #join-form input:focus, #join-form input:hover{
+  background-color: #eeeeee;
+}
+#login-form #login.btn, #login-form #join.btn, #join-form #join-btn.btn{
+  background-color: rgb(118, 160, 236);
+  color: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#login-form .btn:focus, #login-form .btn:focus, #join-form .btn:hover, #join-form .btn:hover {
+  background-color: cornflowerblue;
+}
+.form-field {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.text--center {
+  text-align: center;
+}
+
