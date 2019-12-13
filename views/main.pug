@@ -1,27 +1,27 @@
 extends layout
 
 block content
-  .profile-wrap 
-    .profile
-      if user && user.id
-        .user-name= '안녕하세요! ' + user.nick + '님'
-        input#my-id(type='hidden' value=user.id)
-        a#logout.btn(href='/auth/logout') 로그아웃
-      else
-        .form-container
-          .form-logo Skeleton Login
-          .form-item
-            form#login-form.form(action='/auth/login' method='post')
-              .form-field
-                label.user(for='email'): span.hidden 이메일
-                input#login-email(type='email' name='email' placeholder="user@email.com" required autofocus)
-              .form-field
-                label.lock(for='password'): span.hidden 비밀번호
-                input#login-password(type='password' name='password' required)
-              .form-field
-                button#login.btn(type='submit') 로그인
-              .form-field
-                button#join.btn: a(href='/join') join
-              .form-field
-                if loginError
-                  .error-message= loginError
+  .container-wrap 
+    if user && user.id
+      .user-name= '안녕하세요! ' + user.nick + '님'
+      input#my-id(type='hidden' value=user.id)
+      a#logout.btn(href='/auth/logout') 로그아웃
+      include panel.pug
+    else
+      .form-container
+        .form-logo Skeleton Login
+        .form-item
+          form#login-form.form(action='/auth/login' method='post')
+            .form-field
+              label.user(for='email'): span.hidden 이메일
+              input#login-email(type='email' name='email' placeholder="user@email.com" required autofocus)
+            .form-field
+              label.lock(for='password'): span.hidden 비밀번호
+              input#login-password(type='password' name='password' required)
+            .form-field
+              button#login.btn(type='submit') 로그인
+            .form-field
+              button#join.btn: a(href='/join') join
+            .form-field
+              if loginError
+                .error-message= loginError

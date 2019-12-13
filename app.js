@@ -6,12 +6,14 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 require('dotenv').config();
+const cors = require('cors');
 
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/api');
 
 const app = express();
 sequelize.sync();
@@ -21,25 +23,26 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('port', process.env.PORT || 9001);
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(session({
-  resave: false, //변경되지 않아도 저장할것 인가?
-  saveUninitialized: true, // 세션에 저장할 내역이 없어도 저장할것인가?
-  secret: process.env.COOKIE_SECRET,
-  cookie: {
-    httpOnly: true, //클라이언트에서 쿠키 확인 못하도록함
-    secure: false, // true는 https에서만 사용가능
-  },
-}));
-app.use(flash());
+// app.use(session({
+//   resave: false, //변경되지 않아도 저장할것 인가?
+//   saveUninitialized: true, // 세션에 저장할 내역이 없어도 저장할것인가?
+//   secret: process.env.COOKIE_SECRET,
+//   cookie: {
+//     httpOnly: true, //클라이언트에서 쿠키 확인 못하도록함
+//     secure: false, // true는 https에서만 사용가능
+//   },
+// }));
+// app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use('/', pageRouter); 
+app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 
 app.use((req, res, next) => {  //에러 생성

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => (
     snsId: {
       type: DataTypes.STRING(30),
       allowNull: true,
-    }
+    },
   },{
     timestamps: true,
     paranoid: true,

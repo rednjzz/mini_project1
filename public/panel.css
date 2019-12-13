@@ -1,0 +1,37 @@
+#panel-container {
+  display: static;
+  flex-direction: column;
+  width: 1000px;
+}
+#panel-container .header {
+  background-color: cornflowerblue;
+}
+#panel-container .content {
+  display: absolute;
+  background-color: gray;
+}
+#panel-container .content .sidebar {
+  display: inline-block;
+  vertical-align: top;
+  background-color: orange;
+  width: 30%;
+}
+#panel-container .content .article {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  background-color: gainsboro; 
+}
+
+ul.menu-list li {
+  list-style: none;
+  max-width: 200px;
+  width: 100%;
+  padding: 5px 0px 5px 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+ul.menu-list-sub li:hover {
+  background-color: orangered;
+}
+
