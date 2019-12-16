@@ -6,6 +6,7 @@ const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 const uuid4 = require('uuid4');
 const cors = require('cors');
+const validateEmail = require('../utils/emailCheck');
 
 const refreshTokens = {};
 
@@ -15,6 +16,13 @@ router.use(cors());
 router.post('/join', async (req, res, next) => {
   const { email, nick, password } = req.body;
   try {
+    const validatedEmail = validateEmail(email);
+    if (!validatedEmail) {
+      return res.status(409).json({
+        code: 409,
+        message: '유효하지 않은 이메일 입니다'
+      })
+    }
     const exUser = await User.findOne({ where: { email } });
     if (exUser) {
       return res.status(409).json({
